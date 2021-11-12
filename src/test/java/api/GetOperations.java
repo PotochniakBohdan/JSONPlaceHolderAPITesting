@@ -1,26 +1,42 @@
 package api;
 
+import com.sun.org.glassfish.gmbal.Description;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.*;
 import org.testng.annotations.*;
+import org.testng.asserts.SoftAssert;
 
 public class GetOperations {
 
     @Test(testName = "Get all posts")
-    public void getBaseUrl(){
-        Response response = RestAssured.get("https://jsonplaceholder.typicode.com/posts");
+    @Description("GET /posts")
 
-        int actualStatusCode = response.getStatusCode();
-        Assert.assertEquals(actualStatusCode, 200);
+    public void getBaseUrl() {
+        Response getBaseUrlResponse = RestAssured.get("https://jsonplaceholder.typicode.com/posts");
 
-    }
-
-    public void getFirstPost(){
+        int actualStatusCode = getBaseUrlResponse.getStatusCode();
+        Assert.assertEquals(actualStatusCode, 200, "Get all posts");
 
     }
 
-    public void getAllPostsFromChosenID(){
+    @Test(testName = "getFirstPost")
+    @Description("GET /posts/1")
+    public void getFirstPost() {
+        Response getFirstPostResponse = RestAssured.get("https://jsonplaceholder.typicode.com/posts/1");
+        int actualStatusCode = getFirstPostResponse.getStatusCode();
+        Assert.assertEquals(actualStatusCode, 200, "getFirstPost");
+    }
+
+
+    @Test(testName = "getAllPostsFromChosenID")
+    @Description("GET /posts/1/comments")
+    public void getAllPostsFromChosenID() {
+        Response getAllPostsFromChosenIDResponse =
+                RestAssured.get("https://jsonplaceholder.typicode.com/posts");
+
+        int actualStatusCode = getAllPostsFromChosenIDResponse.getStatusCode();
+        Assert.assertEquals(actualStatusCode, 200, "getAllPostsFromChosenID");
 
     }
 }
