@@ -1,7 +1,7 @@
 package api;
 
 import com.sun.org.glassfish.gmbal.Description;
-import io.restassured.RestAssured;
+import static io.restassured.RestAssured.*;
 import io.restassured.response.Response;
 import org.testng.*;
 import org.testng.annotations.*;
@@ -9,11 +9,9 @@ import org.testng.asserts.SoftAssert;
 
 public class GetOperations {
 
-    @Test(testName = "Get all posts")
-    @Description("GET /posts")
-
+    @Test(testName = "Get all posts", description = "GET /posts" )
     public void getBaseUrl() {
-        Response getBaseUrlResponse = RestAssured.get("https://jsonplaceholder.typicode.com/posts");
+        Response getBaseUrlResponse = get("https://jsonplaceholder.typicode.com/posts");
 
         int actualStatusCode = getBaseUrlResponse.getStatusCode();
         Assert.assertEquals(actualStatusCode, 200, "Get all posts");
@@ -23,7 +21,7 @@ public class GetOperations {
     @Test(testName = "getFirstPost")
     @Description("GET /posts/1")
     public void getFirstPost() {
-        Response getFirstPostResponse = RestAssured.get("https://jsonplaceholder.typicode.com/posts/1");
+        Response getFirstPostResponse = get("https://jsonplaceholder.typicode.com/posts/1");
         int actualStatusCode = getFirstPostResponse.getStatusCode();
         Assert.assertEquals(actualStatusCode, 200, "getFirstPost");
     }
@@ -33,7 +31,18 @@ public class GetOperations {
     @Description("GET /posts/1/comments")
     public void getAllPostsFromChosenID() {
         Response getAllPostsFromChosenIDResponse =
-                RestAssured.get("https://jsonplaceholder.typicode.com/posts");
+                get("https://jsonplaceholder.typicode.com/posts");
+
+        int actualStatusCode = getAllPostsFromChosenIDResponse.getStatusCode();
+        Assert.assertEquals(actualStatusCode, 200, "getAllPostsFromChosenID");
+
+    }
+
+    @Test(testName = "getFromPostID")
+    @Description("GET /posts/1/comments")
+    public void getFromPostID() {
+        Response getAllPostsFromChosenIDResponse =
+                get("https://jsonplaceholder.typicode.com/posts");
 
         int actualStatusCode = getAllPostsFromChosenIDResponse.getStatusCode();
         Assert.assertEquals(actualStatusCode, 200, "getAllPostsFromChosenID");
