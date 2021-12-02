@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="RunAllApiTests" verbose="1" >
+    <test name="GetPost" >
+        <classes>
+            <class name="api.GetOperations" />
+            <class name="api.PostOperations" />
+        </classes>
+    </test>
+
+    <test name="PutDelete">
+        <classes>
+            <class name="api.PutOperations"/>
+            <class name="api.DeleteOperations"/>
+        </classes>
+    </test>
+</suite>

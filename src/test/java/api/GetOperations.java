@@ -39,7 +39,7 @@ public class GetOperations {
         getAllPostsFromChosenIDResponse = get("https://jsonplaceholder.typicode.com/posts");
 
         int actualStatusCode = getAllPostsFromChosenIDResponse.getStatusCode();
-        Assert.assertEquals(actualStatusCode, 201, "getAllPostsFromChosenID");
+        Assert.assertEquals(actualStatusCode, 200, "getAllPostsFromChosenID");
 
     }
 
